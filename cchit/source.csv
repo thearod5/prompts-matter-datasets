@@ -1,6 +1,0 @@
-id,content,layer_id
-1692,"The system shall allow setting of business rules, document types, user classes, etc. to control access to documents, reports, verification, signing, and so on",Requirements
-1727,"The system shall define, populate, and retrieve information about user classes.",Requirements
-1728,The system shall allow user classes to be defined hospital-wide or more narrowly for a specific service.,Requirements
-1688,The system shall integrate all components of the patient record to provide comprehensive and intelligent clinical information access and reporting.,Requirements
-1755,The system shall only auto-select(highlights in blue and places that entry in the field) a patient name if the user types enough characters to uniquely identify a name in the list.,Requirements

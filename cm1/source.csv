@@ -1,6 +1,0 @@
-id,content,layer_id
-SRS5.12.2.1,The DPU-CCM shall implement a mechanism whereby large memory loads and dumps can be accomplished incrementally.,High Level Requirements
-SRS5.12.3.3,"The DPU-CCM shall collect a TASK_HBEAT from  DPU-SCUI, DPU-CCM, DPU-DCX, DPU-TMALI, and DPU-DPA .  Non-responsive tasks will be reported in DPU_HK.",High Level Requirements
-SRS5.13.3.1,"The DPU-TMALI shall utilize SCM_DCI_SR, along with ERRNO provided by DPU-DCI to decode errors and place them on an error queue for DPU-CCM.",High Level Requirements
-SRS5.12.2.2,The DPU-CCM shall process real-time non-deferred commands within B ms of receipt from the ICU or the SCU.,High Level Requirements
-SRS5.12.3.7,The DPU-CCM shall maintain counts of both the number of commands successfully received and rejected and report the parameters in DPU_HK.,High Level Requirements
