@@ -1,0 +1,371 @@
+id,content
+AccessDAO,"AccessDAO handles all queries related to authorization. It implements the Database Access Object (DAO) pattern, with one DAO per database table. DAOs assume validated data and access the database through a DAOFactory. This AccessDAO contains methods to get and set the session timeout in minutes by querying and updating the GlobalVariables table."
+AddApptAction,"This class allows adding appointments to the system. It validates the appointment details, checks if the date has already passed, schedules the appointment in the database, logs the transaction, and returns a success or error message. It utilizes DAO classes to interact with the database and retrieve user names from their medical ID."
+AddERespAction,"Used for Add Personnel page (addPersonnel.jsp). This just adds an empty HCP/UAP, creates a random  
+password for them. Very similar to AddOfficeVisitAction and AddPatientAction."
+AddHCPAction,"Used for Add Personnel page (addPersonnel.jsp). This adds a new HCP/UAP user to the system by creating an empty personnel record, generating a random password for the new user, and logging the transaction. It is similar to other ""add"" actions for adding office visits and patients."
+AddOfficeVisitAction,"Used for Document Office Visit page (documentOfficeVisit.jsp). This class adds an empty office visit,  
+and provides a list of all office visits so that an old office visit can be edited. 
+It is similar to the AddPatientAction class."
+AddPHAAction,"Used for Add Personnel page (addPersonnel.jsp). This adds an empty PHA, creates a random  
+password for them. Similar to other add actions like AddOfficeVisitAction and AddPatientAction."
+AddPatientAction,"Used for Add Patient page (addPatient.jsp). This adds a new patient record, creates a random password for that patient, and logs the transaction. It is similar to the AddOfficeVisitAction class."
+AddPatientValidator,"This validator class is used to validate a PatientBean object when adding a new patient. It only validates the patient's first name, last name, and email by checking they match the expected name and email formats. If any validation fails, a FormValidationException is thrown."
+AddPersonnelValidator,"This validator class is used to validate personnel data when adding a new personnel record. It validates the first name, last name and email fields, checking the format and throwing an exception if any of the fields are invalid."
+AddRemoteMonitoringDataAction,"Handles adding remote monitoring patient data to the database. This class contains methods for adding blood pressure, glucose level, or both to the database for a patient. Validation is performed before storing the data and a transaction is logged with the patient's role before writing to the database."
+AddUAPAction,"Used for Add Personnel page (addPersonnel.jsp). This adds an empty HCP/UAP, creates a random  
+password for them. Similar to other actions for adding office visits and patients."
+AdverseEventBean,"This class stores data about adverse events related to drugs. It contains fields for storing information like the patient ID, drug name, event description, event code, date, status and prescriber. It only contains getter and setter methods to access and set the field values."
+AdverseEventBeanLoader,"This class loads AdverseEventBean objects from a database using JDBC ResultSets and PreparedStatements. It implements the BeanLoader interface to enforce consistency. The loadList() method loads a list of AdverseEventBeans from a ResultSet, while loadSingle() loads a single AdverseEventBean. loadParameters() is not implemented."
+AdverseEventDAO,"Used for the logging mechanism. The AdverseEventDAO class interacts with the database to perform operations related to adverse event reports. It obtains a database connection from the DAOFactory and uses that to execute SQL queries and updates. Various methods are provided to get reports, add reports, remove reports, and get data by code."
+AdverseEventValidator,Validates an AdverseEventBean by checking the format of the description field and throwing a FormValidationException if validation fails.
+AdverseEventsData,This class handles the data for charting in CeWolf/JFreeChart. It generates a dataset from a list of AdverseEventBeans to produce bar charts showing the number of adverse events reported each month for a given prescription or immunization.
+AgeFactor,"This code calculates a risk factor based on a patient's age. Given a patient object and an age threshold, it determines if the patient's age exceeds that threshold, and returns a description of the risk factor."
+AllergyBean,"This class stores data about a patient's allergies. It contains fields for the allergy ID, patient ID, allergy description, and date the allergy was first found. It only contains getter and setter methods to access and set the field values, following the bean design pattern of encapsulating data."
+AllergyBeanLoader,* A loader for AllergyBeans. Loads in allergy information from a database and populates AllergyBean objects.
+AllergyBeanValidator,"This validator class is used to validate an AllergyBean when adding a new allergy in the EditOfficeVisitAction. It throws a FormValidationException if validation fails, containing a list of error messages. It validates the allergy description field by checking its format."
+AllergyDAO,"This code represents a DAO (Database Access Object) for accessing allergy data from a database. The AllergyDAO class uses a DAOFactory to obtain database connections and other DAOs. It provides methods to get all allergies for a patient, and to add a new allergy for a patient."
+ApptBean,"This class represents an appointment, containing information like the appointment type, patient and healthcare provider IDs, date and time, and any comments. The getters and setters allow other parts of the system to retrieve and update the appointment details."
+ApptBeanLoader,"This class is used to load ApptBean objects from a database ResultSet. The loadList method loads a list of ApptBean objects from a ResultSet, the loadParameters method populates a PreparedStatement with parameters for an ApptBean, and the loadSingle method loads a single ApptBean from a ResultSet."
+ApptBeanValidator,"This code implements a validator for ApptBean objects. It checks that the comment field follows the APPT_COMMENT format and throws a FormValidationException if there are any errors, which collects the error messages in an ErrorList. This validation would likely be used when an ApptBean is created or updated to ensure data integrity."
+ApptDAO,"This class provides methods to retrieve and schedule appointment data from a database. It uses a DAOFactory to obtain database connections. It has methods to:
+- Get all appointments for a given patient ID or doctor ID, ordered by schedule date  
+- Get all appointments  
+- Schedule a new appointment by inserting a record into the 'appointment' table"
+ApptTypeBean,This class defines an appointment type with a name and duration in minutes. It provides getters and setters to access and update those properties. The class is used to represent and configure different appointment types in the system.
+ApptTypeBeanLoader,"This code loads ApptTypeBean objects from a database. It defines methods to load a list of ApptTypeBean objects from a ResultSet, set parameters on a PreparedStatement for inserting an ApptTypeBean, and load a single ApptTypeBean from a ResultSet."
+ApptTypeBeanValidator,"This code performs validation on ApptTypeBean objects, checking that the name field follows the APPT_TYPE_NAME format, the duration field follows the APPT_TYPE_DURATION format, and throws a FormValidationException if any errors are found."
+ApptTypeDAO,"This class provides data access functionality for managing appointment types. It allows retrieving a list of appointment types from the database, adding a new appointment type, and editing an existing appointment type."
+AuthDAO,"This class provides database access functionality for authentication and user management. It contains methods for adding new users, resetting passwords, retrieving user information, and tracking failed login attempts."
+BeanBuilder,Takes a parameter map and creates a bean from that map of the appropriate type. The method inspects the parameter map and uses reflection to set properties on the bean instance using setters. It handles exceptions and provides more informative error messages.
+BeanLoader,"This interface defines a standard for loading beans from a database result set. The BeanLoader interface uses a generic type T to represent the type of bean that will be loaded. It contains methods for loading a list of beans from a result set, loading a single bean from a result set, and loading parameters from a bean into a prepared statement."
+BeanValidator,"This abstract class provides utility methods for validating different types of fields. It is meant to be extended by concrete validator classes that validate specific beans. The validate() method validates a bean of type T and throws an exception if invalid.
+
+The utility methods check various types of fields - strings, numbers, enums - against formats and ranges. They return an error message if invalid, and an empty string if valid."
+BloodType,This enum defines all possible blood types and provides utility methods to parse a blood type string to the corresponding enum value.
+CPTCodesDAO,"Used for managing CPT codes. DAO stands for Database Access Object. All DAOs are intended to be reflections of the database, that is, one DAO per table in the database (most of the time). DAOs can assume that all data has been validated and is correct. The CPT code set accurately describes medical, surgical, and diagnostic services and is designed to communicate uniform information about medical services and procedures among physicians, coders, patients, accreditation organizations, and payers for administrative, financial, and analytical purposes."
+ChangeSessionTimeoutAction,"This class is used to change the session timeout value stored in the database. It allows an administrator to pass in a new timeout value in minutes, validates that value, and persists the change to the database. The change only affects new sessions, existing sessions will continue with their original timeout value."
+ChildhoodInfectionFactor,Checks if the patient had certain diagnoses during childhood that would increase their risk for a disease. It is part of a system that calculates patient risk factors.
+CholesterolFactor,"This code checks if a patient's cholesterol levels are above certain thresholds based on their health record, indicating a risk factor. It extends an abstract PatientRiskFactor class to represent the cholesterol risk factor."
+ChronicDiseaseMediator,"This class coordinates checking for risks of chronic diseases. Given a factory and patient ID, it initializes a list of risk checkers for heart disease, type 1 diabetes and type 2 diabetes. It then returns a list of risk checkers that indicate the patient is at risk."
+ChronicDiseaseRiskAction,This code handles checking a patient's risk for chronic diseases. It passes most of the logic to the ChronicDiseaseMediator class and RiskChecker subclasses. The ChronicDiseaseRiskAction class handles retrieving the patient's information and passing it to the mediator to check for risks.
+DAOFactory,The central mediator for all Database Access Objects. It provides connections to the database and instantiates DAOs for different database tables. A production instance is used in deployment and connects to the database connection pool provided by Tomcat. A test instance parses a context.xml file to get the JDBC connection. It also instantiates DAOs for all tables in the system.
+DBException,This code defines a custom DBException that is thrown when a database exception occurs. It wraps the SQLException in order to provide a generic error message to the user while still retaining the SQLException for debugging purposes internally.
+DBUtil,"Provides a few database utilties. The code contains methods to check database connectivity, close database connections, and retrieve the last generated auto-increment ID."
+DateUtil,"Provides a few extra date utilities. Provides methods to calculate dates a certain number of years or days ago, check if a date falls within a range of months, and set SQL date objects to a specified range."
+DeclareHCPAction,"Used by the patient to declare HCPs as ""designated"", allowing them access to patient records. Retrieves a list of declared HCPs, declares or undeclares an HCP based on their MID, and logs the transaction."
+DiagnosisBean,"This class represents a bean for storing data about a diagnosis. A bean's purpose is to simply store data and contain getters and setters. The bean stores an ICD code, description, classification, and optional visit ID."
+DiagnosisBeanLoader,"This class loads DiagnosisBean objects from a database using JDBC ResultSets and PreparedStatements. It enforces consistency by extending the BeanLoader superclass. The loadList() method loads a list of DiagnosisBeans from a ResultSet, while loadSingle() loads a single DiagnosisBean. An optional boolean flag determines whether to load an OVDiagnosisID field from the database."
+DiagnosisBeanValidator,"This code validates an ICD9CM diagnosis code and description. It extends a generic BeanValidator class to validate DiagnosisBean objects. It overrides the validate() method to perform the specific validation for DiagnosisBean, which includes checking that the ICD9CM code field follows the ICD9CM format and the description field follows the description format. If any validation errors are found, a FormValidationException is thrown."
+DrugInteractionAction,"Used by EditDrugInteraction.jsp to edit and get information about drug interactions. Allows reporting new interactions, deleting existing interactions, and retrieving interactions for a given drug."
+DrugInteractionBean,"This class stores data about potential drug interactions between two drugs, including the names of the drugs and a description of the interaction. It follows bean design principles, containing only getters and setters to access the data fields."
+DrugInteractionBeanLoader,"This class loads DrugInteractionBean objects from a database using ResultSet and PreparedStatement objects. It implements the BeanLoader interface to enforce consistency with other similar loaders. The loadList method loads a list of beans from a ResultSet, the loadSingle method loads a single bean, and the loadParameters method prepares a PreparedStatement with parameters from a bean."
+DrugInteractionDAO,"Used for managing drug interactions. DAO stands for Database Access Object. All DAOs are intended to be reflections of the database, that is, one DAO per table in the database (most of the time). DAOs can assume that all data has been validated and is correct."
+DrugInteractionValidator,"Validates a DrugInteractionBean object. Checks that the first drug, second drug and description fields are in the correct format and throws a FormValidationException if any validation fails."
+EMailValidator,"This class validates MessageBean objects by checking that the 'body' field contains a valid email address. If validation fails, a FormValidationException is thrown containing a list of errors."
+EditApptTypeAction,"This code allows editing appointment types. It provides methods to get all appointment types, add a new appointment type, edit an existing appointment type, and get the duration of an appointment type by name. When adding or editing an appointment type, it performs validation, checks for duplicates, and logs a transaction."
+EditHealthHistoryAction,"This code edits the health history of a patient. It performs the following high-level tasks:
+
+- Validates patient ID 
+- Retrieves DAOs to interact with the database
+- Validates health record form data 
+- Adds a new health record to the database  
+- Retrieves all existing health records for a patient
+- Logs transactions"
+EditMonitoringListAction,"This class handles adding and removing patients from a healthcare provider's (HCP) remote monitoring list. It contains methods for adding a patient, removing a patient, checking if a patient is already on the list, and retrieving a patient's name. When changes are made, transactions are logged."
+EditOfficeVisitAction,"This code handles editing office visits of a patient by adding or removing diagnoses, procedures, immunizations, lab procedures, and prescriptions. It also updates visit details and performs validation checks before saving changes."
+EditOfficeVisitForm,"This form class contains data for editing an existing office visit. It acts as a container for various fields related to an office visit, including IDs for procedures, diagnoses, medications, immunizations, and notes. Getter and setter methods are defined for each field to allow external classes to access and modify the form data."
+EditOfficeVisitValidator,"Used to validate updating an office visit, by {@link EditOfficeVisitAction}
+Validates fields on an {@link EditOfficeVisitForm} to update an office visit. It checks format and required fields depending on whether prescription validation is enabled. If validation fails, a {@link FormValidationException} is thrown."
+EditPHRAction,"This code edits the patient health record for a given patient. It allows adding allergies, viewing and updating family information, health records, office visits, and checking for risk factors. It also has methods to check if a patient's family members have various conditions and return their cause of death if applicable. After updating records, an email is sent to notify the patient and their representatives."
+EditPatientAction,"Edits a patient's information. Takes in patient information from a form, validates it, updates the patient record in the database, logs the transaction, sends an email notification to the patient and representatives, and allows editing the patient's message filter."
+EditPersonnelAction,"This code edits personnel information in the system. It is used by pages that allow personnel to edit their own information as well as admin pages that allow editing of other personnel.
+
+When editing personnel, the code first validates that the logged in user has permission to edit the specified personnel. It then retrieves the personnel data from the database and applies the updated information. Any changes are logged as a transaction and saved back to the database."
+EditPrescriptionAction,Edits an existing patient prescription in the database. Used by the hcp-uap/editPrescription.jsp page to allow healthcare providers to update prescription information.
+EditRepresentativesAction,"This code allows a patient to edit their personal representatives. It contains methods to get a list of patients represented by a given personnel ID, add a representative to a patient, and remove a representative from a patient. When changes are made, transactions are logged."
+Email,"The Email class stores data about fake emails, including:
+- A list of ""to"" email addresses  
+- The ""from"" email address
+- The email subject
+- The email body
+- A timestamp of when the email was added
+It contains getters and setters for each field and implements equals(), hashCode() and toString() methods."
+EmailBeanLoader,"This class loads and saves Email objects from and to a database. It implements the BeanLoader interface to provide consistency with other loaders. The loadList method loads a list of Email objects from a ResultSet, loadParameters populates a PreparedStatement with data from an Email object, and loadSingle loads a single Email from a ResultSet."
+EmailUtil,"/**
+* Sends email to users. Since we don't want to train spammers in 326, this just inserts into a database. If
+* we put this into an actual system, we would replace this class with stuff from javax.mail
+*/"
+EmergencyReportAction,"This code creates an Emergency Report for a patient. When the report is generated and viewed, an email notification is sent to the patient and their personal representative (if applicable). The report contains the following information:
+
+- Patient name, age, gender and emergency contact
+- Patient blood type  
+- List of patient allergies
+- List of current prescriptions with warnings
+- List of recent or important diagnoses  
+- List of patient immunizations"
+ErrorList,"Used by the validators to create a list of error messages. The class provides methods to add error messages to the list, check if there are any errors, retrieve the list of errors, and iterate over the error messages."
+Ethnicity,This enum represents the different ethnicities that patients in the iTrust system can have. It provides a human readable name for each ethnicity and a parse method to parse an input string into the corresponding enum value.
+EthnicityFactor,This code checks if a patient's ethnicity matches one of the at-risk ethnicities for a certain condition. It extends a base PatientRiskFactor class that defines methods for describing the risk factor and checking if the patient has that risk factor.
+FakeEmailDAO,"This DAO class provides methods to access and manipulate fake email data stored in a database. The DAO uses a DAOFactory to obtain database connections and other dependencies. It contains methods to retrieve all emails, emails by sender, insert a new email, and search emails by body text."
+FamilyBeanLoader,Loads family member data from a ResultSet into FamilyMemberBean objects. The relation to the current user is specified when constructing the loader.
+FamilyDAO,"Used for queries related to families. The FamilyDAO class provides methods to retrieve information about a patient's parents, siblings and children from the database. The DAOFactory is used to obtain database connections and other DAOs."
+FamilyHistoryFactor,Checks if a patient has a family history of a given diagnosis range by delegating to a DAO. The class extends a base PatientRiskFactor class that typically checks for risk factors and provides a description.
+FamilyMemberBean,"This code defines a bean class to store data about family members. A bean's purpose is simply to store data and provide getters and setters for that data. This bean stores data such as a member ID, relation to the user, first name, and last name."
+FormValidationException,"This exception is used specifically for when an action involves the correct
+and proper submission of a web form.  Form Validation is handled by a series of
+other classes, but when form validation is incorrect or incomplete, this exception
+is thrown."
+Gender,"This enum represents the possible gender options for a patient, including Male, Female and Not Specified. The parse method allows parsing a string input to a Gender enum value."
+GenderFactor,Checks if the patient's gender matches a given at-risk gender. It extends the PatientRiskFactor class which typically checks various risk factors for a patient.
+GenerateCalendarAction,"This class generates a calendar view for appointments, office visits, and lab procedures for a logged in user. It retrieves appointment, office visit, and lab procedure data from the database and organizes it by day of the month to be displayed on a calendar. It also checks for appointment conflicts."
+GetUserNameAction,"This code handles getting a user's name based on their medical ID (MID). It accepts a MID as input, looks up that MID in the database using a DAOFactory and AuthDAO, and returns the corresponding user's name."
+GetVisitRemindersAction,"This code checks if patients need various immunizations based on their age, time since last dose, and current date. It has methods to get visit reminders for different reminder types and check if specific immunizations are needed. It also removes duplicate reminders from a list."
+HCPDiagnosisBean,"This class stores data related to the diagnosis given by a healthcare professional (HCP). It contains fields to store the HCP's ID, name, number of patients, lists of medications and lab procedures prescribed, and patient satisfaction scores for visits and treatment. The class follows bean design principles by only containing getters and setters to access and modify the data."
+HCPLinkBean,This Java class defines a bean to pass data between viewPrescriptionRecords.jsp and reportAdverseEvent.jsp pages. The bean stores and retrieves data using getter and setter methods. The purpose of the bean is simply to store data and no business logic is implemented.
+HCPVisitBean,"This class stores data about a visit with a healthcare provider (HCP). It contains fields for the HCP's name, specialty, address, visit date, and ID. It follows bean design principles by only containing getters and setters to access and modify the data, without any business logic."
+HealthRecord,"This class stores health record data for a patient. It contains fields for basic health information like height, weight, blood pressure readings, cholesterol levels, and smoker status. The purpose of the class is simply to store data, so it only contains getter and setter methods and no other functionality."
+HealthRecordForm,"This class represents a form containing health record data for editing. It contains fields for height, weight, smoking status, blood pressure, and cholesterol levels. Getter and setter methods are provided to access and modify the field values."
+HealthRecordFormValidator,"This validator class validates the HealthRecordForm used when adding health information in the EditHealthHistoryAction. It validates the form fields like blood pressure, cholesterol levels, height, weight and smoker status by checking the input values are within the acceptable ranges. If any validation fails, a FormValidationException is thrown."
+HealthRecordsBeanLoader,"This class loads HealthRecord objects from a database using ResultSets and PreparedStatements. It enforces consistency by extending the BeanLoader superclass. The loadList() method loads a list of HealthRecord objects from a ResultSet, loadParameters() sets parameters on a PreparedStatement from a HealthRecord object, and loadSingle() loads a single HealthRecord from a ResultSet."
+HealthRecordsDAO,"Used for all health records where a whole history is kept. DAO stands for Database Access Object. All DAOs are intended to be reflections of the database, that is, one DAO per table in the database (most of the time). DAOs can assume that all data has been validated and is correct."
+HeartDiseaseRisks,"This code checks if a given patient is at risk for Heart Disease. It retrieves the patient's data from a DAOFactory and health records. It then evaluates a list of risk factors including gender, age, ethnicity, weight, hypertension, cholesterol, smoking history, prior diagnoses, and family history to determine the overall risk."
+HospitalBean,"This HospitalBean class stores data about a hospital. It contains fields for the hospital ID and name, 
+and corresponding getters and setters to access those fields. The purpose of the bean is simply to 
+store data, without any business logic."
+HospitalBeanLoader,"* A loader for HospitalBeans. Loads in information to/from HospitalBean objects using ResultSets and PreparedStatements. It enforces consistency by extending the BeanLoader superclass. The loadList() method loads a list of HospitalBeans from a ResultSet, loadSingle() loads a single HospitalBean, and loadParameters() prepares a PreparedStatement with parameters from a HospitalBean."
+HospitalBeanValidator,This code validates the input for hospital bean objects. It checks that the hospital ID and name fields match the required formats and throws an exception if any validation fails.
+HospitalsDAO,"Used for managing hospitals. This class provides data access to the hospitals table in the database. It uses a DAOFactory to obtain database connections. The DAO performs basic CRUD (create, read, update, delete) operations on hospitals such as getting all hospitals, getting a hospital by ID, adding a hospital, updating a hospital, assigning and unassigning HCPs (healthcare providers) to hospitals."
+HtmlEncoder,"This class provides methods for escaping HTML characters and checking URLs. The encode() method escapes the less than, greater than and newline characters. The URLOnSite() method checks if a URL contains the http:// protocol."
+HypertensionFactor,"This code checks if a patient's blood pressure is above a given threshold, indicating hypertension. It extends from a base PatientRiskFactor class that defines methods for describing risk factors and checking if a patient has that risk factor."
+ICD9CMLink,"This JSP tag is used as a utility to generate a hyperlink to an external ICD9CM code lookup site. When used in a JSP page, a tag attribute `code` containing the ICD9 code is passed, and the tag generates an anchor tag linking to the external site with that code in the URL."
+ICDCodesDAO,"Used for managing all ICD codes. DAO stands for Database Access Object. All DAOs are intended to be reflections of the database, that is, one DAO per table in the database (most of the time). DAOs can assume that all data has been validated and is correct."
+IConnectionDriver,This code defines an interface for abstracting away how JDBC connections are obtained. The DAOFactory uses this interface to get JDBC connections in an implementation agnostic way. This allows the DAOFactory to be independent of the specific connection driver used.
+LOINCBeanLoader,"* A loader for LOINCBeans. Loads in information to/from beans using ResultSets and PreparedStatements. It loads lists of beans from a ResultSet and single beans from a ResultSet. It also prepares PreparedStatements, though that functionality is unimplemented."
+LOINCBeanValidator,"This code validates a LOINCbean object. It throws a FormValidationException if validation fails. It checks that the LabProcedureCode, Component and KindOfProperty fields are not null. It also checks that several fields follow the LOINC format using the checkFormat() method."
+LOINCDAO,"This DAO class provides methods for accessing and modifying LOINC data in the database. The LOINC DAO uses a DAOFactory to obtain database connections and access other DAOs. It provides methods to add, update, get by procedure code, and get all LOINC codes. The LOINC codes represent medical laboratory observations and procedures."
+LOINCbean,"This class stores data about Lab Procedure Codes. It contains getters and setters for labProcedureCode, component, kindOfProperty, timeAspect, system, scaleType and methodType."
+LabProcHCPAction,"This Action class handles functionality related to lab procedures for logged in healthcare providers (HCPs). It performs the following:
+
+- Sorts lab procedures by LOINC code
+- Retrieves all lab procedures for the next month for a HCP's patients  
+- Changes the privacy settings of a lab procedure
+- Checks if the logged in HCP created a specific lab procedure"
+LabProcUAPAction,"This class handles lab procedures for UAPs (Unlicensed Assistive Personnel). It contains methods for:
+
+- Updating a lab procedure, which will send an email notification if the status has changed
+- Sending an email to notify the patient that their procedure has been updated 
+- Viewing all lab procedures for a given UAP"
+LabProcedureBean,"This class stores data about a lab procedure. It contains fields for storing information like the patient ID, procedure ID, LOINC code, status, commentary, results, office visit ID, timestamp and access rights. Getters and setters are provided to access and modify the fields. The class also contains some utility methods to set the status and access rights."
+LabProcedureBeanLoader,* A loader for LabProcedureBeans. Loads in information to/from beans using ResultSets and PreparedStatements. Uses the superclass to enforce consistency. Loads LabProcedureBeans from a ResultSet and populates PreparedStatements with LabProcedureBean data.
+LabProcedureDAO,"This DAO manages lab procedure codes in the database. It provides methods to retrieve, insert, update and delete lab procedure records. A DAOFactory is used to obtain database connections and access other DAOs. The methods retrieve lab procedures for a given patient, LHCP, LOINC code or office visit."
+LabProcedureValidator,"This class validates LabProcedureBean objects. It checks that various fields conform to specific formats:
+
+- The LOINC field must match the LOINC format
+- The Commentary and Results fields must match the COMMENTS format  
+- The Status field must match the LAB_STATUS format
+- The Rights field must match the LAB_RIGHTS format
+
+If any fields fail validation, a FormValidationException is thrown."
+Localization,"/** Provides a singleton for accessing the current locale of iTrust
+ * Allows retrieving the current locale which could be loaded from a file.
+ * The singleton pattern ensures only one instance of the Localization class is created."
+LoginFailureAction,"This code implements a basic IP address lockout mechanism to mitigate denial of service attacks. However, the code author notes that IP address lockouts are not the ideal solution and account lockouts based on user accounts would be better. The code is implemented this way due to limitations in the Tomcat authentication used by the application."
+MailValidator,This code defines a MailValidator class that extends an EmailValidator class. It has a validateEmail() method which validates an email string and throws an exception if invalid. This can be used to validate email addresses for forms or user inputs.
+ManageHospitalAssignmentsAction,"This class manages the assignment of HCPs (healthcare providers) to hospitals. It provides methods to:
+
+- Get hospitals that a HCP is not assigned to  
+- Get hospitals that a HCP is assigned to
+- Assign a HCP to a hospital
+- Remove a HCP's assignment to a hospital
+- Remove all hospital assignments for a HCP
+- Check if a HCP ID exists"
+MedicationBean,"This class represents a medication, which is identified by an ND code. It stores the ND code and description of the medication. A prescription, represented by the PrescriptionBean class, associates a medication with an office visit."
+MedicationBeanLoader,"This class loads MedicationBean objects from a database using JDBC ResultSets and PreparedStatements. It enforces consistency by extending the BeanLoader superclass. The loadList method loads a list of MedicationBeans from a ResultSet, the loadSingle method loads a single MedicationBean, and the loadParameters method prepares a PreparedStatement with parameters from a MedicationBean."
+MedicationBeanValidator,This code validates MedicationBean objects. It checks that the ND Code and Description fields are in the correct format and throws a FormValidationException if any validation fails.
+MessageBean,"This class stores data about a message from one user to another. Its purpose is to only store data and not contain any business logic. It contains fields to store the recipient ID, sender ID, message ID, parent message ID, subject, body, timestamp and read status. It contains corresponding getter and setter methods for each field."
+MessageBeanLoader,"* A loader for MessageBeans. It loads information to and from MessageBean objects using ResultSets and PreparedStatements. It extends the BeanLoader superclass to enforce consistency. The loader's methods load a list of beans from a ResultSet, load parameters into a PreparedStatement from a bean, and load a single bean from a ResultSet."
+MessageDAO,"Used for the logging mechanism. DAO stands for Database Access Object. All DAOs are intended to be reflections of the database, that is, one DAO per table in the database (most of the time). DAOs can assume that all data has been validated and is correct."
+MessageValidator,Validates the data for updating an office visit. Checks that the subject and body fields are in the correct format and throws an exception if any validation fails.
+Messages,"This code provides internationalized string messages for the system. Given a key, the getString() method returns the corresponding localized string value based on the current locale. The string messages are loaded from a resource bundle."
+MonitorAdverseEventAction,"This class handles monitoring and managing adverse event reports. It allows retrieving reports within a date range, sending emails to patients requesting more information, removing reports, and notifying relevant parties when reports are removed."
+MyDiagnosisAction,"This code edits the privacy levels of diagnoses. It retrieves a list of diagnoses for a patient, gets a list of HCPs who have treated a particular diagnosis, looks up prescriptions given by an HCP for a diagnosis, and compares HCPs based on the number of patients they have treated for a diagnosis."
+NDCodesDAO,"Used for managing the ND Codes.
+DAO stands for Database Access Object. All DAOs are intended to be reflections of the database, that is,
+one DAO per table in the database (most of the time). DAOs can assume that all data has been validated and is correct.
+The National Drug Code (NDC) is a universal product identifier used in the 
+United States for drugs intended for human use."
+NoHealthRecordsException,This exception is thrown when checking for health risk indicators and the patient has no health records entered. It extends from a base iTrustException but has different error handling. The exception contains a static message and a constructor that passes the message to the base exception.
+OfficeVisitBaseAction,"An abstract class which contains functionalities common among all actions relating to inserting and editing office visits. Because all office visits are with a certain patient, OfficeVisitBaseAction extends PatientBaseAction. Use this class whenever you have a page which requires a patient MID and office visit ID. It verifies that the IDs are valid and throws an exception if invalid, redirecting the user to the home page. Concrete methods allow for association with a unique office visit identifier, and verify its correctness and existence. Similar to PatientBaseAction and PersonnelBaseAction."
+OfficeVisitBean,"This class stores data about an office visit at the hospital. It contains fields for the visit ID, patient ID, healthcare provider ID, notes, visit date, hospital ID, and lists of diagnoses, prescriptions, and procedures. The purpose of the class is simply to store data and provide getter and setter methods to access that data."
+OfficeVisitDAO,"Performs database operations related to office visits including adding, updating and retrieving office visits along with associated procedures, prescriptions and diagnoses. Manages office visits and related data with capabilities like adding lab procedures, checking for existing visits, getting visits by patient or LHCP, getting prescription reports and visits by diagnosis."
+OfficeVisitLoader,"Loads and stores OfficeVisitBean objects from and to a database. It loads a list of OfficeVisitBeans from a ResultSet and a single OfficeVisitBean from a ResultSet. It also prepares parameters for a PreparedStatement, though that is unimplemented."
+OperationalProfile,"This class stores operational profile data related to transactions. It stores the total number of transactions, number of patient transactions, and number of personnel transactions. It also stores counts of different transaction types (enum TransactionType) for total, patient, and personnel transactions using HashMaps. Getters and setters are provided to access and update the data."
+OperationalProfileLoader,"This class loads OperationalProfile objects from a database using JDBC ResultSets and PreparedStatements. It implements the BeanLoader interface which enforces consistency for loaders. The loadList method loads a list of OperationalProfile objects from a ResultSet, the loadParameters method populates a PreparedStatement with parameters from an OperationalProfile object, and the loadSingle method loads a single OperationalProfile object from a ResultSet."
+ParameterUtil,Converts a Map from the JSP container to a type-checked HashMap to provide type safety.
+PatientBaseAction,"This abstract class is used for actions that require an associated patient. It checks that the provided patient ID is valid and corresponds to an existing patient. Subclasses can extend this class to inherit this functionality. When initializing, the patient ID string is passed to the constructor where it is validated. If invalid, an exception is thrown to redirect the user to the home page."
+PatientBean,"This code defines a PatientBean class for storing patient data. The purpose of the bean is simply to store data and provide getter and setter methods. It contains fields for storing various information about a patient like name, address, phone numbers, emergency contacts, insurance information, and medical data."
+PatientDAO,"Manages all static patient information stored in the database. Allows you to:
+- Get patient data  
+- Add new patients   
+- Edit patient data
+- Check if a patient exists
+- Manage patient representatives  
+- Retrieve patient medical records
+- Search for patients"
+PatientLoader,"This class loads and saves PatientBean objects from and to a database using ResultSets and PreparedStatements. It extends a BeanLoader superclass to enforce consistency. The loadList() and loadSingle() methods load PatientBean objects from a ResultSet, while loadParameters() saves a PatientBean object to a PreparedStatement."
+PatientNavigation,"This JSP tag is used as the patient navigation bar at the bottom of the healthcare provider user interface. It displays a set of links to various pages related to a patient's record. 
+To add a new page to the navigation bar, the page title and URL are added to the corresponding arrays, and the new page should accept a patient ID."
+PatientRiskFactor,"This is an abstract class that represents a risk factor for a patient. Subclasses implement the 
+abstract getDescription() and hasFactor() methods to provide the risk factor details. The hasRiskFactor() 
+method caches the result of hasFactor() to avoid recomputing it if called multiple times."
+PatientValidator,"Validates a patient bean, ensuring fields are in the correct format and data is valid. Checks fields like name, date of birth, address, insurance information, and credit card details. If validation fails, a FormValidationException is thrown."
+PatientVisitBean,"This class stores data about a patient's visit. It contains fields for the patient name, address, 
+and last office visit date. It follows bean conventions by only having getters and setters to 
+access and modify the data."
+PersonnelBaseAction,"This abstract class is used for actions that require an associated personnel ID. It provides functionality to validate the personnel ID format and existence. Subclasses can extend this class without reimplementing the personnel ID validation logic. When a personnel ID is invalid, an exception is thrown, redirecting the user to the home page."
+PersonnelBean,"This class stores data about a hospital employee. It contains fields for storing information like name, role, address, phone numbers, email, specialty, etc. It only contains getter and setter methods to access and modify the field values. The purpose is to simply store data and provide access to that data."
+PersonnelDAO,"This class is used for managing information related to healthcare personnel like HCPs, UAPs and Admins. 
+It acts as an interface to the database table for Personnel. 
+It uses a DAOFactory to obtain database connections and access other DAOs.
+The methods allow you to retrieve, add, update and search for personnel records."
+PersonnelLoader,"This class loads PersonnelBean objects from a database using ResultSets and PreparedStatements. It enforces consistency by extending the BeanLoader superclass. The loadList() method loads a list of PersonnelBeans from a ResultSet, while loadSingle() loads a single PersonnelBean. The loadParameters() method populates a PreparedStatement with values from a PersonnelBean."
+PersonnelValidator,"Validates a personnel bean, validating various fields like name, address, phone number and email. If validation fails, a FormValidationException is thrown."
+PrescriptionAlerts,This enum contains a list of prescription names and codes that should trigger alerts. The `isAlert()` method checks if a given prescription code is in the alert list.
+PrescriptionBean,"This class stores data about a prescription. It contains fields for the medication, visit ID, start and end dates, dosage, and instructions. Getter and setter methods are provided to access and modify the fields. The equals() and hashCode() methods are implemented to compare two PrescriptionBean objects."
+PrescriptionBeanLoader,"This class loads PrescriptionBean objects from a database using JDBC ResultSets and PreparedStatements. It uses a MedicationBeanLoader to load MedicationBean objects. The loadList() method loads a list of PrescriptionBean objects from a ResultSet, while loadSingle() loads a single PrescriptionBean. The loadParameters() method populates a PreparedStatement with values from a PrescriptionBean for inserting or updating the database."
+PrescriptionReportAction,"This class handles prescription reports for a given patient ID. It is used by several JSP pages to generate and view prescription reports. It provides methods to:
+
+- Represent another patient and generate reports for that patient
+- Get all office visits for the patient
+- Get prescription reports based on the selected office visits 
+- Get patient information
+- Validate selected office visits and build a query string for the prescription report URL"
+PrescriptionReportBean,This is a container bean that holds a PrescriptionBean and an OfficeVisitBean. This allows the prescription report to be generated from a single clean query by combining prescription and office visit data.
+PrescriptionReportBeanLoader,"This class loads PrescriptionReportBean objects from a database. It uses other loaders to load the OfficeVisit and Prescription objects that are part of a PrescriptionReportBean. The loadList method loads a list of PrescriptionReportBean objects from a ResultSet, while loadSingle loads a single PrescriptionReportBean."
+PriorDiagnosisFactor,This class checks if a patient has had prior diagnoses within a specified ICD code range by delegating to a DAO (Data Access Object). It is one of several patient risk factor classes that perform similar checks.
+ProcedureBean,"This class stores data about a procedure. It contains fields for storing the CPT code, description, attribute, HCP ID, and date. Getter and setter methods are provided to access and modify the fields. The purpose of the bean is simply to store data, with little functionality."
+ProcedureBeanLoader,"This class loads ProcedureBean objects from a database using JDBC ResultSets and PreparedStatements. It extends a BeanLoader superclass to enforce consistency. The loadList() method loads a list of ProcedureBeans from a ResultSet, while loadSingle() loads a single ProcedureBean. An optional boolean flag determines whether to load an additional OVProcedureID field."
+ProcedureBeanValidator,Validates an ND code from an action that updates an ND code list. Checks the format of the CPT code and description fields and throws an exception if validation fails.
+ProductionConnectionDriver,"This code obtains a JDBC connection from Tomcat's JDBC connection pool defined in the context.xml configuration file. It handles exceptions when running outside of the Tomcat environment, such as during unit tests."
+RandomPassword,This code generates a random 10 character password consisting of lowercase letters. It uses the Random class to generate random numbers which are then mapped to lowercase letters.
+ReferralBean,"This ReferralBean class stores data about a medical referral. A bean's purpose is simply to store data and have Getters and Setters to access that data. The class stores details about the referral like the patient ID, sender ID, receiver ID, referral details, consultation details, and status."
+ReferralBeanLoader,"This class loads ReferralBean objects from a database using ResultSet and PreparedStatement objects. It extends a BeanLoader superclass to enforce consistency. The loadList() method loads a list of ReferralBeans from a ResultSet, the loadSingle() method loads a single ReferralBean, and the loadParameters() method populates a PreparedStatement with data from a ReferralBean."
+ReferralDAO,"Used to update referrals, and fetch lists of referrals sent to and from HCPs. The ReferralDAO class interacts with the database to perform CRUD operations on referrals. It uses a DAOFactory to obtain database connections and other DAOs. The methods getReferralsSentFrom() and getReferralsSentTo() fetch lists of referrals sent from or to an HCP, while editReferral() and addReferral() update and add new referrals respectively."
+ReferralManagementAction,"Used for managing referrals of patients to other healthcare providers (HCPs). Allows HCPs to send referrals to other HCPs, update existing referrals, and retrieve referrals they have sent or received."
+RemoteMonitoringDAO,"Used for keeping track of remote monitoring data. It accesses the database to retrieve and store patient data. It uses a DAOFactory to obtain database connections and access other DAOs. The DAO handles data validation and retrieval of data for a given HCP and patient. It allows storage of patient monitoring data, addition and removal of patients from an HCP's monitoring list, and validation of patient representatives."
+RemoteMonitoringDataBean,"This class stores remote monitoring data for patients. It contains fields for storing the patient ID, 
+the time the data was recorded, blood pressure readings, glucose level, the role of the reporter, 
+and the reporter's ID. It follows bean conventions by only having getters and setters to access 
+the data, without any business logic. The bean is meant to simply store data and provide access 
+to that data."
+RemoteMonitoringDataBeanLoader,"This class loads RemoteMonitoringDataBean objects from a database using JDBC ResultSets and PreparedStatements. It extends the BeanLoader superclass to enforce consistency. The loadList() method loads a list of beans from a ResultSet, loadParameters() prepares a PreparedStatement with parameters from a bean, and loadSingle() loads data from a ResultSet into a single bean object."
+RemoteMonitoringDataBeanValidator,"This validator is used to validate remote monitoring data when adding new data using the AddRemoteMonitoringDataAction. It extends a generic BeanValidator and overrides the validate method to check that the systolic and diastolic blood pressure and glucose level fields are in the correct format. If any validation fails, a FormValidationException is thrown."
+ReportAdverseEventAction,"This class allows reporting adverse events. It contains methods to:
+- Send emails to healthcare providers when adverse events are reported. The emails contain details of the adverse events and affected patients.    
+- Add adverse event reports to the database 
+- Validate adverse event data before adding to the database"
+ReportRequestBean,"This class stores data about a report request. It contains fields for the report ID, requester ID, patient ID, request date, view date, and status. It follows bean design principles by only containing getters and setters and no business logic. The purpose of a bean is to simply store data."
+ReportRequestBeanLoader,"* A loader for ReportRequestBeans. Loads in information to/from ReportRequestBean objects using ResultSets and PreparedStatements, enforcing consistency using the BeanLoader superclass. The loadList method loads a list of beans from a ResultSet, loadSingle loads a single bean, and loadParameters populates a PreparedStatement from a bean."
+ReportRequestDAO,"Used for handling data related to report requests. It provides methods to retrieve report requests based on requester, patient or all requests. It can also add new report requests, approve, reject and mark requests as viewed."
+ResetPasswordAction,"This class manages resetting a user's password. It provides methods to:
+- Check if a user exists with a given ID 
+- Check if a user has exceeded the maximum number of reset attempts
+- Check if a user has the correct role for a password reset
+- Get a user's security question
+- Reset a user's password after validating their security answer
+- Send an email notification to the user after their password is reset
+It separates users into patients, HCPs and UAPs, and does not allow admins to reset their passwords through this class. 
+It also validates that the new password is correctly entered twice and meets the password requirements."
+RiskChecker,This abstract class provides utility methods for checking patient risks for various diseases. Subclasses extend this class and implement the abstract methods to check risks for a specific disease. The isAtRisk() and getPatientRiskFactors() methods use the other methods to determine if a patient is at risk and retrieve the relevant risk factors.
+RiskDAO,"Used for finding risk factors for a given patient. This class accesses the database to retrieve relevant information. It uses a Factory pattern to obtain database connections and access other data access objects (DAOs). The methods find family history, childhood infections, smoking history, and prior diagnoses for a given patient ID."
+Role,"This enum defines the different user roles in the iTrust system. It contains constants for Patient, ER, HCP, UAP, PHA, Administrator and Tester roles. The enum contains information about the string representation of the role and the database table it maps to. The parse method can be used to parse a string into the corresponding Role enum constant."
+SearchUsersAction,"This class provides functionality to search for users in the system, including both personnel and patients. It uses DAOs to access the database and retrieve the user information. The searchForPersonnelWithName and searchForPatientsWithName methods can be used to search for personnel and patients respectively, based on their first and last names."
+SecurityQA,"This class stores data related to a security question and answer. It contains fields for the question, answer, and confirmed answer. It follows bean conventions by only having getters and setters to access the fields and no other functionality."
+SecurityQAValidator,"This code validates a security question and answer. It handles validation for various states of the reset password flow. It extends a generic BeanValidator class and overrides the validate method to perform custom validation logic. It checks that the answer and confirm answer match, and that the question and answer follow the correct format. If validation fails, a FormValidationException is thrown."
+SendMessageAction,"This code handles sending messages between patients and healthcare personnel. It validates the message details, adds the message to the database, and sends an email notification to the recipient. It also logs the message send transaction and provides helper methods to retrieve patient and personnel details."
+SessionTimeoutListener,"This class listens for HttpSession creation events and sets a timeout on the session based on a pre-specified time limit stored in a database. When a session is created, the `sessionCreated()` method pulls the timeout limit from the database and sets it as the max inactive interval on the session, causing it to timeout after that duration."
+SetSecurityQuestionAction,Handles setting and retrieving the security questions/answers for users. It is used by patient and staff pages to edit their demographic information and set or update their security questions. The action class interacts with the AuthDAO to store and retrieve the security question and answer from the database for a given user ID (MID).
+SmokingFactor,This code checks if a patient has ever smoked in their life by delegating to a Data Access Object (DAO) that queries a database. The patient ID is used to lookup their smoking history in the database.
+State,"This code defines an enum representing all 50 US states. It contains state names and abbreviations, and provides methods to get the name, abbreviation, and parse a string into a State enum value. It is used to represent and work with US state data."
+StateSelect,"This JSP tag renders an HTML select dropdown for states. It uses an enum named State to populate the options. 
+It also selects the currently selected state based on the value attribute."
+SurveyAction,"This class is used to add patient survey data to the database.  The office visit ID is linked with the survey ID.  Once the
+survey is added, the transaction is logged."
+SurveyBean,"This SurveyBean class stores data related to a patient's office visit survey. It contains fields for:
+- The visit ID 
+- The survey date
+- The waiting room time in minutes
+- The exam room time in minutes
+- The patient's satisfaction with the overall visit  
+- The patient's satisfaction with the treatment
+It only contains getters and setters to access and modify the fields. It does not contain any business logic."
+SurveyDAO,"This DAO handles all data related to surveys. It interacts with the database to insert, retrieve, and check the status of survey data. It uses a DAOFactory to obtain database connections and access other DAOs. It assumes all data has been validated before use."
+SurveyLoader,This class loads SurveyBean objects from a database using JDBC ResultSets and PreparedStatements. It extends a base BeanLoader class to enforce consistency. The loadList and loadParameters methods are not implemented here and must be implemented in subclasses. The loadSingle method loads a single SurveyBean from a ResultSet.
+SurveyResultBean,"This Java class represents survey results for a healthcare provider (HCP). It stores HCP information like name, address, specialty, hospital, and average satisfaction scores from survey responses. It also stores the percentage of office visits for which satisfaction results are available."
+SurveyResultBeanLoader,"This code loads SurveyResultBean objects from a database using JDBC ResultSets and PreparedStatements. It implements the BeanLoader interface to enforce consistency with other bean loaders. The loadList() method loads a list of beans from a ResultSet, the loadParameters() method prepares a PreparedStatement with parameters from a bean, and the loadSingle() method loads a single bean from a ResultSet."
+SurveyResultDAO,"This DAO handles all survey results. It uses a factory to obtain database connections. It has methods to retrieve survey results for a given zip code and specialty, or for a given hospital and specialty."
+SurveySearchValidator,Validates the zip code entered by a user when searching for HCP survey results. Throws a FormValidationException if the zip code is invalid.
+TransactionBean,"This bean class stores data about a transaction that occurred within the iTrust system. The purpose of the bean is simply to store data and provide getter and setter methods. It stores information like the transaction ID, the medical record numbers of the users involved, the type of transaction, the time it occurred, and any additional information."
+TransactionBeanLoader,"This class loads TransactionBean objects from a database using JDBC ResultSets and PreparedStatements. It inherits from a BeanLoader superclass to enforce consistency. The loadList method loads a list of TransactionBeans from a ResultSet, the loadParameters method prepares a PreparedStatement with data from a TransactionBean, and the loadSingle method loads data from a ResultSet into a single TransactionBean object."
+TransactionDAO,"Used for the logging mechanism. DAO stands for Database Access Object. All DAOs are intended to be reflections of the database, that is, one DAO per table in the database (most of the time). DAOs can assume that all data has been validated and is correct. The code provides methods for logging transactions, fetching transactions by various parameters, and obtaining an operational profile."
+TransactionType,"This code defines an enum representing all possible transaction types in the system. The enum contains a code and description for each transaction type. There are methods to parse a code to get the corresponding enum value, and to get the code and description from an enum value. There are also constants defined for transaction types that are viewable by patients."
+Type1DiabetesRisks,"Checks to see if a given patient is at risk for Type 1 Diabetes by evaluating various risk factors like the patient's age, ethnicity, family history, and childhood infections."
+Type2DiabetesRisks,"* Checks to see if the given patient is at risk for Type II Diabetes. It retrieves the patient's health records and calculates risk factors based on the patient's age, ethnicity, weight, blood pressure, cholesterol levels, prior diagnoses, and family history."
+UpdateCPTCodeListAction,"This code allows an administrator to update the list of CPT (Current Procedural Terminology) codes used in the system. CPT codes are used to describe medical procedures for administrative and billing purposes. 
+
+The code allows administrators to:
+
+- Add new CPT codes and their descriptions
+- Update existing CPT code information like descriptions
+- Log any CPT code changes in the system transaction log"
+UpdateHospitalListAction,"This code handles updating the list of hospitals. It contains methods for adding a new hospital, updating an existing hospital, and validating hospital data. It is used by the hospitalListing.jsp page."
+UpdateICDCodeListAction,Handles updating the ICD Code (Diagnosis) List Used by editICDCodes.jsp. The International Statistical Classification of Diseases and Related Health Problems (ICD) provides codes to classify diseases and health conditions. This class allows adding new ICD codes and updating existing ICD code information.
+UpdateLOINCListAction,"Handles updating the LOINC Used. Logical Observation Identifiers Names and Codes (LOINC) is a database and universal standard for identifying medical laboratory observations. This class allows adding new LOINCs, updating existing LOINC information, and logging transactions. Validation is performed before changes are made."
+UpdateNDCodeListAction,"Handles updating the ND Code (Prescription) List Used by editNDCodes.jsp. The National Drug Code (NDC) is a universal product identifier used in the United States for drugs intended for human use. This class allows adding new ND codes, updating existing ND code information, and logging transactions."
+ValidationFormat,This enum defines a set of validation formats for various types of data. It provides a regular expression pattern and error message for each format. The enum can be used to validate user input by matching the input against the appropriate regex pattern.
+ViewAdverseEventAction,"This class provides functionality to view adverse event records. It has methods to get an adverse event by ID, get unremoved adverse events by code, and get the name for a given adverse event code."
+ViewExpiredPrescriptionsAction,This class handles retrieving data for viewing expired prescription records. It retrieves patient and personnel data from DAOs and logs transactions. It also sends an email notification if an unauthorized user accesses a patient's prescription records.
+ViewMyAccessLogAction,Handles retrieving the log of record accesses for a given user Used by viewAccessLog.jsp. Retrieves a list of transactions between two given dates for a specific user. Throws exceptions if invalid dates are provided. Provides helper methods to determine default start and end dates based on available transactions.
+ViewMyApptsAction,"This class allows a user to view their appointments. Given a user's ID, it retrieves their appointments from the database and provides utility methods to get the user's name from their ID. It also has a method to retrieve all appointments, which may need to be restricted."
+ViewMyMessagesAction,"This class handles actions for viewing a user's messages. It provides methods to retrieve a user's messages in various ways: all messages, sent messages only, sorted by time or name. It can also filter messages based on criteria like sender, subject, body text, and date range. When a message is read, its state is updated to ""read""."
+ViewMyRecordsAction,"This code allows patients to view their own medical records through a patient portal. It provides methods to retrieve a patient's personal information, allergies, family medical history, health records, office visits, lab results, and other medical data."
+ViewMyRemoteMonitoringListAction,"Handles retrieving the patient data for a certain HCP as used by viewTelemedicineData.jsp. This class retrieves remote monitoring data for a healthcare provider (HCP) and logs the transaction. It provides methods to get all patient data, patient data within a date range, and patient data without logging the transaction."
+ViewMyReportRequestsAction,"This class allows a user to view all their report requests. It provides methods to:
+- Get all report requests for the logged in user  
+- Add a new report request for a patient  
+- Get details for a specific report request
+- Set a report request's viewed status
+- Get a long status string describing a report request"
+ViewOfficeVisitAction,"This code handles viewing office visit details for a given office visit ID. It retrieves the office visit information, associated prescriptions, and the HCP's name. It contains two constructors - one for a patient viewing their own office visit, and one for a representative viewing a patient's office visit."
+ViewPatientOfficeVisitHistoryAction,"This code provides functionality for viewing a healthcare provider's patient office visit history. It retrieves all office visits for the logged in healthcare provider from the database, gets patient information for each visit, and builds a list of `PatientVisitBean` objects containing details of each visit. The list can then be returned to display the healthcare provider's patient visit history."
+ViewPersonnelAction,"Handles retrieving personnel beans for a given personnel Used by viewPersonnel.jsp. It uses DAOs to retrieve personnel data from the database and log transactions. It can retrieve a PersonnelBean for a given MID, or the PatientBean for the currently logged in user."
+ViewPrescriptionRecordsAction,"This code handles retrieving data for viewing prescription records. It performs the following actions:
+
+- Retrieves Patient and Personnel data using DAOs  
+- Gets the representees of the logged in user
+- Gets the prescribing doctor for a given prescription
+- Gets all prescriptions for a given patient ID
+- Logs the transaction of viewing prescription records
+- Sends an email notification if the logged in user does not have permission to view the prescriptions"
+ViewPrescriptionRenewalNeedsAction,This code retrieves a list of patients whose prescriptions will expire within 7 days and who are assigned to the currently logged in healthcare provider. The list of patients is then used to display prescription renewal needs to the healthcare provider.
+ViewReportAction,"This Action class handles requests for viewing patient reports. It provides methods to retrieve a patient's diagnoses, procedures, prescriptions, and declared healthcare providers. The DAOs for accessing the data are initialized in the constructor and used by the getter methods."
+ViewSurveyResultAction,"/**
+* This class is used to handle retrieving survey results from the database.  It also logs the transaction. 
+* It provides methods to retrieve survey results for an entire hospital or for a given zip code."
+ViewVisitedHCPsAction,"This code handles the logic for viewing a patient's visited healthcare providers (HCPs). It performs the following high-level tasks:
+
+- Retrieves all office visits for the patient from the database 
+- Gets HCP details for each visit from the HCP ID 
+- Checks if the HCP is already declared for the patient
+- Adds the HCP visit details to a list to display
+- Also adds any declared HCPs without office visits to the list
+- Allows the user to declare or undeclare an HCP from the list
+- Filters the list of all HCPs by last name, specialty, or zip code"
+VisitFlag,This class stores data to flag an office visit. It contains constants for different flag types and fields to store the flag type and value. It has getters and setters to access the flag type and value.
+VisitReminderReturnForm,"This form class contains data related to reminding a patient about an upcoming office visit. It contains information about the healthcare provider, patient, patient name and phone number, and any flags related to the visit. The form acts as a container to collect and store this data."
+VisitReminderReturnFormLoader,"This class loads VisitReminderReturnForm objects from a ResultSet, either individually or in bulk. It uses the BeanLoader superclass to enforce consistency. The loadList() method loads a list of VisitReminderReturnForms from a ResultSet, while loadSingle() loads a single VisitReminderReturnForm. The loadParameters() method is not implemented."
+VisitRemindersDAO,"Used for queries related to patient reminders. DAO stands for Database Access Object. All DAOs are intended to be reflections of the database, that is, one DAO per table in the database (most of the time). DAOs can assume that all data has been validated and is correct. DAOs should never have setters or any other parameter to the constructor than a factory. All DAOs should be accessed by DAOFactory (@see {@link DAOFactory}) and every DAO should have a factory - for obtaining JDBC connections and/or accessing other DAOs."
+WeightFactor,"Checks if a patient's body mass index exceeds a given threshold, and if so, considers it a risk factor. The BMI is obtained from the patient's health record."
+iTrustException,This iTrustException class is a custom exception class used to display error messages within the iTrust system. It extends the base Exception class and adds functionality for displaying general messages to users and more detailed technical messages. This exception is handled by a default exception handler within the iTrust system.
+messages,"Monitors and tracks various report requests and actions related to viewing prescription records, personnel, office visits, and prescription renewal needs. Notifies users of unauthorized access and exceptions."

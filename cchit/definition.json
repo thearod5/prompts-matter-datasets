@@ -1,0 +1,22 @@
+{
+	"artifacts": {
+		"Requirements": {
+			"path": "source.csv"
+		}, 
+		"Regulatory Codes": {
+			"path": "Regulatory Codes.csv"
+		}
+	},
+	"traces": {
+		"r2c": {
+			"target": "Requirements", 
+			"source": "Regulatory Codes",
+			"path": "traces.csv"
+		}
+	},
+	"overrides": {
+		"allowed_orphans": 1031,
+		"allowed_missing_sources": 0,
+		"allowed_missing_targets": 0
+	}
+}
