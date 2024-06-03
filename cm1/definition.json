@@ -1,0 +1,34 @@
+{
+   "artifacts":{
+      "High Level Requirements":{
+         "path":"source.csv"
+      },
+      "Low Level Requirements":{
+         "path":"CM1-targetArtifacts.xml",
+         "cols":"CM1-artifacts"
+      }
+   },
+   "traces":{
+      "low2high":{
+         "target":"High Level Requirements",
+         "source":"Low Level Requirements",
+         "path":"traces.csv",
+         "cols": "traces"
+      }
+   },
+   "conversions":{
+      "CM1-artifacts":{
+         "id":"id",
+         "content":"content"
+      },
+      "traces": {
+         "source": "target",
+         "target": "source"
+      }
+   },
+   "overrides": {
+       "allowed_orphans": -1,
+       "allowed_missing_targets": -1,
+       "allowed_missing_sources": -1
+   }
+}

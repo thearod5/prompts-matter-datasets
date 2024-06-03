@@ -1,0 +1,6 @@
+id,content,layer_id,summary,chunks
+DD-445,Monitoring API The _DronologyRuntimeMonitor_ shall allow to publish arbitrary monitoring messages and subscribe to certain message types,Designs,,
+DD-606,Simulate goto in NVECSimulator When given a goto command the _NVECSimulator_ shall compute the next coordinate based upon the normal vector and altitude of the current position and the normal vector and altitude of the destination. The simulator shall move the UAV with infinite acceleration and use numerical methods to hone in on the next coordinate which will be {{SIMULATION_STEP_SIZE}} meters from the current position along the travel path.,Designs,,
+DD-579,Transition from IN_AIR to LANDING When a UAV is in {{IN_AIR}} state and receives a command to land it transitions to {{LANDING}} state,Designs,,
+DD-121,Update UAV location frequency The UAV location shall be updated on the map at the currently defined {{UI_UAV_REFRESH_RATE}},Designs,,
+DD-506,Save flight route When a flight route is uploaded to Dronology the _FlightRouteManager_ shall save it under a unique name as an xml file.,Designs,,

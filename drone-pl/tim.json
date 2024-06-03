@@ -1,0 +1,19 @@
+{
+    "artifacts": [
+        {
+            "type": "Designs",
+            "fileName": "Designs.csv"
+        },
+        {
+            "type": "Code",
+            "fileName": "Code.csv"
+        }
+    ],
+    "traces": [
+        {
+            "fileName": "Code2Designs.json",
+            "sourceType": "Code",
+            "targetType": "Designs"
+        }
+    ]
+}
